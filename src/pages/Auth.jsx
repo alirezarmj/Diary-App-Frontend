@@ -4,32 +4,44 @@ import { sendAuthRequest } from "../api/api";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Auth = () => {
   const [inputs, setInputs] = useState({ name: "", email: "", password: "" });
   const [isSignup, setIsSignup] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const storageHandle = (data) => {
     if (isSignup) {
       localStorage.setItem("userId", data.user._id);
+      toast.success("Signed up successfully!");
     } else {
       localStorage.setItem("userId", data.id);
+      toast.success("Logged in successfully!");
     }
     dispatch(authActions.login());
     navigate("/diaries");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(inputs);
     if (isSignup) {
       sendAuthRequest(true, inputs)
         .then(storageHandle)
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          toast.error("Signup failed. Please try again");
+        });
     } else {
       sendAuthRequest(false, inputs)
         .then(storageHandle)
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          toast.error("Login failed");
+        });
     }
   };
 
