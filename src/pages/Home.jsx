@@ -51,17 +51,6 @@ const Home = () => {
           width={"100%"}
           maxWidth={"600px"} // Limit maximum width for better readability
         >
-          {/* Share Your Story Button */}
-          <Button
-            variant="outlined"
-            sx={{
-              width: { xs: "80%", sm: "auto" }, // Full width on small screens, auto width on larger screens
-              fontSize: { xs: "0.875rem", sm: "1rem" }, // Responsive font size
-            }}
-          >
-            Share Your Story
-          </Button>
-
           {/* View Diaries Button */}
           <Button
             LinkComponent={Link}
@@ -73,6 +62,16 @@ const Home = () => {
             }}
           >
             View Diaries
+          </Button>
+          {/* Share Your Story Button */}
+          <Button
+            variant="outlined"
+            sx={{
+              width: { xs: "80%", sm: "auto" }, // Full width on small screens, auto width on larger screens
+              fontSize: { xs: "0.875rem", sm: "1rem" }, // Responsive font size
+            }}
+          >
+            Share Your Story
           </Button>
         </Box>
       </Box>
