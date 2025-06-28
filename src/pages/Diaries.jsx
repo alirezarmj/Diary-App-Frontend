@@ -40,8 +40,8 @@ const Diaries = () => {
               <DiaryItem
                 key={item._id}
                 onDelete={handleDelete}
-                user={item.user._id}
-                name={item.user.name}
+                user={item.user?._id || ""} // Safe access with optional chaining
+                name={item.user?.name || "Unknown"} // Provide fallback value
                 date={new Date(item.date).toLocaleDateString()}
                 title={item.title}
                 description={item.description}
